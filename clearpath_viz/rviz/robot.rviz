@@ -155,7 +155,7 @@ Visualization Manager:
       Show Axes: false
       Show Descriptions: false
       Show Visual Aids: false
-      Update Topic: /twist_marker_server/update
+      Update Topic: twist_marker_server/update
       Value: true
     - Class: rviz/Group
       Displays:
@@ -167,7 +167,7 @@ Visualization Manager:
           Length: 0.1
           Name: Odometry
           Position Tolerance: 0.1
-          Topic: /odometry/filtered
+          Topic: odometry/filtered
           Value: true
         - Alpha: 1
           Autocompute Intensity Bounds: true
@@ -194,7 +194,7 @@ Visualization Manager:
           Size (Pixels): 3
           Size (m): 0.03
           Style: Flat Squares
-          Topic: /scan
+          Topic: scan
           Use Fixed Frame: true
           Use rainbow: true
           Value: true
@@ -223,7 +223,7 @@ Visualization Manager:
           Size (Pixels): 3
           Size (m): 0.01
           Style: Flat Squares
-          Topic: /camera/depth/points
+          Topic: camera/depth/points
           Use Fixed Frame: true
           Use rainbow: true
           Value: true
@@ -246,7 +246,7 @@ Visualization Manager:
           Class: rviz_imu_plugin/Imu
           Enabled: false
           Name: Imu
-          Topic: /imu/data
+          Topic: imu/data
           Value: false
       Enabled: true
       Name: Sensing
@@ -256,7 +256,7 @@ Visualization Manager:
           Displays:
             - Class: rviz/Marker
               Enabled: true
-              Marker Topic: /exploration_polygon_marker
+              Marker Topic: exploration_polygon_marker
               Name: Exploration Marker
               Namespaces:
                 {}
@@ -268,7 +268,7 @@ Visualization Manager:
               Draw Behind: true
               Enabled: true
               Name: Exploration Costmap
-              Topic: /explore_server/explore_costmap/costmap
+              Topic: explore_server/explore_costmap/costmap
               Value: true
           Enabled: true
           Name: Exploration
@@ -278,7 +278,7 @@ Visualization Manager:
           Draw Behind: true
           Enabled: true
           Name: Static Map
-          Topic: /map
+          Topic: map
           Value: true
         - Alpha: 0.7
           Class: rviz/Map
@@ -286,7 +286,7 @@ Visualization Manager:
           Draw Behind: true
           Enabled: true
           Name: Global Costmap
-          Topic: /move_base/global_costmap/costmap
+          Topic: move_base/global_costmap/costmap
           Value: true
         - Alpha: 0.7
           Class: rviz/Map
@@ -294,7 +294,7 @@ Visualization Manager:
           Draw Behind: false
           Enabled: true
           Name: Local Costmap
-          Topic: /move_base/local_costmap/costmap
+          Topic: move_base/local_costmap/costmap
           Value: true
         - Alpha: 1
           Buffer Length: 1
@@ -308,7 +308,7 @@ Visualization Manager:
             X: 0
             Y: 0
             Z: 0
-          Topic: /move_base/NavfnROS/plan
+          Topic: move_base/NavfnROS/plan
           Value: true
         - Alpha: 1
           Buffer Length: 1
@@ -322,7 +322,7 @@ Visualization Manager:
             X: 0
             Y: 0
             Z: 0
-          Topic: /move_base/DWAPlannerROS/local_plan
+          Topic: move_base/DWAPlannerROS/local_plan
           Value: true
       Enabled: false
       Name: Navigation
@@ -338,12 +338,12 @@ Visualization Manager:
       Hide Inactive Objects: true
     - Class: rviz/Select
     - Class: rviz/SetInitialPose
-      Topic: /initialpose
+      Topic: initialpose
     - Class: rviz/SetGoal
-      Topic: /move_base_simple/goal
+      Topic: move_base_simple/goal
     - Class: rviz/PublishPoint
       Single click: false
-      Topic: /clicked_point
+      Topic: clicked_point
   Value: true
   Views:
     Current:
