@@ -1,47 +1,59 @@
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument
+from launch.actions import DeclareLaunchArgument, GroupAction
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 
-from launch_ros.actions import Node
+from launch_ros.actions import Node, PushRosNamespace
 from launch_ros.substitutions import FindPackageShare
 
 
 def generate_launch_description():
     # Launch Configurations
-    robot_model = LaunchConfiguration('robot_model')
+    namespace = LaunchConfiguration('namespace')
 
     # Launch Arguments
-    arg_robot_model = DeclareLaunchArgument(
-        'robot_model',
-        choices=['a200', 'j100'],
-        default_value='a200'
+    arg_namespace = DeclareLaunchArgument(
+        'namespace',
+        default_value='',
+        description='Robot namespace'
     )
 
-    pkg_clearpath_viz = FindPackageShare('clearpath_viz')
-    # Paths
-    dir_robot_rviz_config = PathJoinSubstitution([
-        pkg_clearpath_viz, 'rviz', robot_model])
+    arg_use_sim_time = DeclareLaunchArgument(
+        'use_sim_time',
+        default_value='false',
+        description='Use simulation (Gazebo) clock if true'
+    )
 
     arg_rviz_config = DeclareLaunchArgument(
         name='config',
         default_value='robot.rviz',
     )
 
+    pkg_clearpath_viz = FindPackageShare('clearpath_viz')
+
     config_rviz = PathJoinSubstitution(
-        [dir_robot_rviz_config, LaunchConfiguration('config')]
+        [pkg_clearpath_viz, 'rviz', LaunchConfiguration('config')]
     )
 
-    node_rviz = Node(
-        package='rviz2',
-        executable='rviz2',
-        output='screen',
-        arguments=['-d', config_rviz]
-    )
+    group_view_model = GroupAction([
+        PushRosNamespace(namespace),
+        Node(package='rviz2',
+            executable='rviz2',
+            name='rviz2',
+            arguments=['-d', config_rviz],
+            parameters=[{'use_sim_time': LaunchConfiguration('use_sim_time')}],
+            remappings=[
+               ('/tf', 'tf'),
+               ('/tf_static', 'tf_static')
+            ],
+            output='screen')
+    ])
+
 
     ld = LaunchDescription()
     # Args
-    ld.add_action(arg_robot_model)
+    ld.add_action(arg_namespace)
     ld.add_action(arg_rviz_config)
+    ld.add_action(arg_use_sim_time)
     # Nodes
-    ld.add_action(node_rviz)
+    ld.add_action(group_view_model)
     return ld
