@@ -8,12 +8,12 @@ from launch_ros.substitutions import FindPackageShare
 
 def generate_launch_description():
     # Launch Configurations
-    robot_model = LaunchConfiguration('robot_model')
+    platform_model = LaunchConfiguration('platform_model')
     namespace = LaunchConfiguration('namespace')
 
     # Launch Arguments
-    arg_robot_model = DeclareLaunchArgument(
-        'robot_model',
+    arg_platform_model = DeclareLaunchArgument(
+        'platform_model',
         choices=['a200', 'j100'],
         default_value='a200'
     )
@@ -69,7 +69,7 @@ def generate_launch_description():
 
     ld = LaunchDescription()
     # Args
-    ld.add_action(arg_robot_model)
+    ld.add_action(arg_platform_model)
     ld.add_action(arg_namespace)
     ld.add_action(arg_rviz_config)
     ld.add_action(arg_use_sim_time)
