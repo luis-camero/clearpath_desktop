@@ -57,6 +57,9 @@ def generate_launch_description():
         Node(
             package='joint_state_publisher_gui',
             executable='joint_state_publisher_gui',
+            remappings=[
+                ("joint_states", "platform/joint_states")
+            ]
         ),
         IncludeLaunchDescription(
             PathJoinSubstitution([
