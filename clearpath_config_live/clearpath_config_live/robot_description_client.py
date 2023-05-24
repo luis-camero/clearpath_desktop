@@ -31,11 +31,13 @@ class RobotDescriptionClient:
 
         parameter = rcl_interfaces.msg.Parameter()
         parameter.name = param_name
-        parameter.value.type = rcl_interfaces.msg.ParameterType.PARAMETER_STRING
+        param_type = rcl_interfaces.msg.ParameterType.PARAMETER_STRING
+        parameter.value.type = param_type
 
         self.request.parameters = [parameter]
         self.client = client_node.create_client(
-            rcl_interfaces.srv.SetParameters, server_node_name + '/set_parameters'
+            rcl_interfaces.srv.SetParameters,
+            server_node_name + '/set_parameters'
         )
 
     def wait_for_service(self, timeout_sec=5.) -> None:

@@ -10,7 +10,7 @@ find_package(ament_cmake REQUIRED)
 find_package(ament_cmake_python REQUIRED)
 
 install(PROGRAMS
-  ${PROJECT_NAME}/clearpath_config_live_test.py
+  ${PROJECT_NAME}/clearpath_config_live_node.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
