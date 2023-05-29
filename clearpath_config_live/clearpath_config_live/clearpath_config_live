@@ -33,7 +33,7 @@ def main():
     # Node
     rclpy.init()
     node = rclpy.create_node("clearpath_config_live")
-    node.declare_parameter("config_file", "/etc/clearpath/test_robot.yaml")
+    node.declare_parameter("config_file", "/etc/clearpath/robot.yaml")
     logger = rclpy.logging.get_logger("clearpath_config_live")
 
     # Get File
