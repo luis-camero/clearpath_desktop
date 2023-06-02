@@ -15,7 +15,7 @@
 import os
 import xacro
 from clearpath_config.common import File
-from clearpath_generators.description.generator import (
+from clearpath_generator_common.description.generator import (
     DescriptionGenerator
 )
 
@@ -44,8 +44,7 @@ class ClearpathConfigUpdater:
         """Re-load File and Create Description"""
         # Generate URDF
         dg = DescriptionGenerator(
-            config=File(self.config_file),
-            output_path=self.output_path
+            setup_path=self.output_path
         )
         dg.generate()
 
