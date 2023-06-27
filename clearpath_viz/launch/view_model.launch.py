@@ -48,7 +48,9 @@ def generate_launch_description():
             executable='rviz2',
             name='rviz2',
             arguments=['-d', config_rviz],
-            parameters=[{'use_sim_time': LaunchConfiguration('use_sim_time')}],
+            parameters=[
+                {'use_sim_time': LaunchConfiguration('use_sim_time')},
+            ],
             remappings=[
                ('/tf', 'tf'),
                ('/tf_static', 'tf_static')
@@ -60,6 +62,10 @@ def generate_launch_description():
             remappings=[
                 ("joint_states", "platform/joint_states")
             ]
+        ),
+        Node(
+            package='clearpath_config_live',
+            executable='clearpath_config_live',
         ),
         IncludeLaunchDescription(
             PathJoinSubstitution([
