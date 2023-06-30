@@ -61,6 +61,10 @@ def generate_launch_description():
                 ("joint_states", "platform/joint_states")
             ]
         ),
+        Node(
+            package='clearpath_config_live',
+            executable='clearpath_config_live',
+        ),
         IncludeLaunchDescription(
             PathJoinSubstitution([
                 pkg_clearpath_platform_description,
